@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Results</title>
+    <style>
+        #image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+            margin: 0 auto;
+        }
+
+        .bounding-box {
+            position: absolute;
+            border: 3px solid;
+            border-radius: 3px;
+            text-align: left;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            padding: 5px;
+        }
+
+        .compost {
+            border-color: darkgreen;
+            background-color: rgba(0, 100, 0, 0.16);
+        }
+
+        .recycling {
+            border-color: blue;
+            background-color: rgba(0, 0, 255, 0.153);
+        }
+
+        .trash {
+            border-color: black;
+            background-color: rgba(0, 0, 0, 0.151);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Results</h1>
+
+    {% for object in objects %}
+    <div class="bounding-box {{ object.label }}" data-xmin="{{ object.xmin }}" data-ymin="{{ object.ymin }}"
+        data-xmax="{{ object.xmax }}" data-ymax="{{ object.ymax }}" data-score="{{ object.score }}">
+        {{ object.label }} ({{ object.score }})
+    </div>
+    {% endfor %}
+    </div>
+
+    <script>
+        var objects = [];
+
+        // Extract the objects from the HTML and store them in the 'objects' variable
+        var boundingBoxes = document.getElementsByClassName("bounding-box");
+        for (var i = 0; i < boundingBoxes.length; i++) {
+            var boundingBox = boundingBoxes[i];
+            var object = {
+                label: boundingBox.classList[1],
+                xmin: boundingBox.getAttribute("data-xmin"),
+                ymin: boundingBox.getAttribute("data-ymin"),
+                xmax: boundingBox.getAttribute("data-xmax"),
+                ymax: boundingBox.getAttribute("data-ymax"),
+                score: boundingBox.getAttribute("data-score")
+            };
+            objects.push(object);
+        }
+    </script>
+
+    <div id="image-container">
+        <img src="data:image/png;base64,{{ image_data_uri }}" id="uploaded-image"
+            style="max-width: 100%; max-height: 100%;" onload="updateBoundingBoxes()">
+    </div>
+
+    <script>
+        function updateBoundingBoxes() {
+            var img = document.getElementById("uploaded-image");
+            var imgWidth = img.width;
+            var imgHeight = img.height;
+
+            var container = document.getElementById("image-container");
+            var containerWidth = container.offsetWidth;
+            var containerHeight = container.offsetHeight;
+
+            // Calculate the horizontal and vertical offset of the image
+            var horizontalOffset = (containerWidth - imgWidth) / 2;
+            var verticalOffset = (containerHeight - imgHeight) / 2;
+
+            var scaling_factor = 1.0; // Change this to the desired scaling factor
+            // Update the bounding box positions and sizes using imgWidth and imgHeight
+            for (var i = 0; i < objects.length; i++) {
+                var object = objects[i];
+                if (object.label == "compost") {
+                    var div = document.createElement("div");
+                    div.classList.add("bounding-box", "compost");
+                } else if (object.label == "recycling") {
+                    var div = document.createElement("div");
+                    div.classList.add("bounding-box", "recycling");
+                } else if (object.label == "trash") {
+                    var div = document.createElement("div");
+                    div.classList.add("bounding-box", "trash");
+                }
+                div.style.left = object.xmin * imgWidth * scaling_factor  + "px";
+                div.style.top = object.ymin * imgHeight * scaling_factor  + "px";
+                div.style.width = (object.xmax - object.xmin) * scaling_factor * imgWidth + "px";
+                div.style.height = (object.ymax - object.ymin) * scaling_factor * imgHeight + "px";
+                container.appendChild(div);
+            }
+        }
+    </script>
