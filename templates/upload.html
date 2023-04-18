@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Object Detection App</title>
+    <title>Recycling Detection App</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <style>
       body {
@@ -78,13 +78,13 @@
     <div class="container">
       <h1>Object Detection App</h1>
       <form action="/" method="post" enctype="multipart/form-data">
-        <label for="file">Select an image:</label>
+        <label for="file">Select an image of trash to identify which bin it should go in:</label>
         <label class="custom-file-upload">
           <input type="file" name="file" id="file" onchange="showImage(this)">Choose File
         </label>
         <div class="img-upload" id="img-upload">
           <img id="img-preview">
-          <button type="submit" class="detect-button" id="detect-button">Detect Objects</button>
+          <button type="submit" class="detect-button" id="detect-button">Detect</button>
         </div>
       </form>
     </div>

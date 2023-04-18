@@ -28,7 +28,7 @@ def upload_image():
         image_data_uri = base64.b64encode(buffered.getvalue()).decode("ascii")
         
         # Render the results template with the detected objects
-        return render_template('results.html', objects=objects, image_data_uri=image_data_uri)
+        return render_template('results.html', object=objects[0], image_data_uri=image_data_uri)
     
     # Render the upload form
     return render_template('upload.html')
