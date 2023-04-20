@@ -12,10 +12,12 @@
         background-color: #fff;
         border-radius: 5px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        margin: 50px auto;
+        margin: auto;
         max-width: 500px;
-        padding: 30px;
+        padding: 50px;
         text-align: center;
+        margin-left: auto;
+        margin-right: auto;
       }
       h1 {
         font-size: 36px;
@@ -46,11 +48,17 @@
         background-color: #0062cc;
       }
       .img-upload {
-        margin-top: 20px;
-        text-align: center;
+        display: block;
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
       }
       .img-upload img {
-        max-width: 100%;
+        display: block;
+        max-width: 90%;
+        max-height: 90%;
+        margin-left: auto;
+        margin-right: auto;
       }
       .detect-button {
         display: none;
@@ -75,7 +83,7 @@
     </style>
   </head>
   <body>
-    <div class="container">
+    <div class="container" style="text-align: center;">
       <h1>Object Detection App</h1>
       <form action="/" method="post" enctype="multipart/form-data">
         <label for="file">Select an image of trash to identify which bin it should go in:</label>
