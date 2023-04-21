@@ -3,7 +3,7 @@ import numpy as np
 from PIL import Image
 from io import BytesIO
 import base64
-from object_detection import detect_objects
+from object_detection import detect_object
 
 app = Flask(__name__)
 
@@ -20,7 +20,7 @@ def upload_image():
         image_data = np.array(image)
         
         # Call the object detection model
-        objects = detect_objects(image_data)
+        object = detect_object(image_data)
 
         # Convert the image data to base64 and pass it to the template
         buffered = BytesIO()
@@ -28,7 +28,7 @@ def upload_image():
         image_data_uri = base64.b64encode(buffered.getvalue()).decode("ascii")
         
         # Render the results template with the detected objects
-        return render_template('results.html', object=objects[0], image_data_uri=image_data_uri)
+        return render_template('results.html', object=object, image_data_uri=image_data_uri)
     
     # Render the upload form
     return render_template('upload.html')
