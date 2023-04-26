@@ -42,8 +42,11 @@ To use the application, follow these steps:
 
 ### Example
 Below is an example of an image to upload to the app:
-![alt text](images/glass477.jpg "Glass")
+
+<img src="images/glass477.jpg" alt="Glass">
 
 
 Here is an example of the suggestion for the uploaded image:
-![alt text](images/glass477_result.png "Recycling")
+
+<img src="images/glass477_result.png" alt="Recycling" width="700" height="700">
+
