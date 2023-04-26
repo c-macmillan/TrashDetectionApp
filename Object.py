@@ -3,7 +3,8 @@ id2label = {
     1: 'compost',
     2: 'glass',
     3:'metal',
-    4: 'plastic'
+    4: 'paper',
+    5: 'plastic'
 }
 
 class Object:
