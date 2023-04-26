@@ -83,8 +83,15 @@
     </style>
   </head>
   <body>
-    <div class="container" style="text-align: center;">
+    <div class="container" style="text-align: left;">
       <h1>Object Detection App</h1>
+      <p>Welcome to the Waste Management App. This app allows you to take a picture of garbage and classify it as compost, recycle, or waste.</p>
+      <p>To get started, follow these steps:</p>
+      <ol>
+        <li>Upload an image that you want to know about</li>
+        <li>Click on Detect to use a fancy Computer Vision model to find out where this item should go</li>
+        <li>Dispose of the item in the appropriate bin based on the app's classification</li>
+      </ol>
       <form action="/" method="post" enctype="multipart/form-data">
         <label for="file">Select an image of trash to identify which bin it should go in:</label>
         <label class="custom-file-upload">
