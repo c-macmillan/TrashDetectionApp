@@ -48,5 +48,5 @@ Below is an example of an image to upload to the app:
 
 Here is an example of the suggestion for the uploaded image:
 
-<img src="images/glass477_result.png" alt="Recycling" width="700" height="700">
+<img src="images/glass477_result.png" alt="Recycling" width="458.4" height="676.2">
 
