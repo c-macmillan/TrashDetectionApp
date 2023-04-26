@@ -34,7 +34,7 @@ The app is deployed using Google Cloud Platform App Engine. To deploy the app:
 To use the application, follow these steps:
 
 1. Visit the app's homepage: https://trashclassifierapp.uw.r.appspot.com/
-2. Click on the "Upload" button to upload a photo of waste.
+2. Click on the "Choose file" button to upload a photo of waste.
 3. Click on the "Classify" button.
 4. Wait for the app to analyze the photo and suggest the appropriate bin for disposal.
 5. Dispose your waste in the suggested bin.
