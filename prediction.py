@@ -1,21 +1,14 @@
 
 import torch
-import torch.nn as nn
-import torchvision.models as models
-
-# import warnings
-# warnings.filterwarnings('ignore')
-
-import torch # PyTorch package
+import warnings
+warnings.filterwarnings('ignore')
 import torchvision.transforms as transforms # transform data
-import torch.nn as nn # basic building block for neural networks
-from io import BytesIO
 import sys
 
 device= torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 pretrained_model = torch.jit.load('model_scripted.pt')
 
-def return_prediction(filename = 'model_scripted.pt', img='img_0467_720.jpg' ):
+def return_prediction(img):
     print("Starting Predictions\n\n")
     transform = transforms.Compose([
     transforms.ToTensor(),
