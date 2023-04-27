@@ -36,7 +36,7 @@ To use the application, follow these steps:
 1. Visit the app's homepage: https://trashclassifierapp.uw.r.appspot.com/
 2. Click on the "Choose file" button to upload a photo of waste.
 3. Click on the "Classify" button.
-4. Wait for the app to analyze the photo and suggest the appropriate bin for disposal.
+4. Wait for the app to analyze the photo, classify the detected item (cardboard, compost, glass, metal, paper, plastic, or trash), and suggest the appropriate bin (compost, recycle, or landfill) for disposal.
 5. Dispose your waste in the suggested bin.
 
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Waste Sorting Results</title>
+    <title>Waste Classification Results</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <style>
       body {
@@ -70,7 +70,7 @@
   </head>
   <body>
     <div class="container">
-      <h1>Waste Sorting Results</h1>
+      <h1>Waste Classification Results</h1>
       <div class="result-container">
         <img src="data:image/png;base64,{{ image_data_uri }}" id="uploaded-image" style="max-width: 50%; max-height: 50%;">
         <div class="educational-text">{{ educational_text }}</div>
