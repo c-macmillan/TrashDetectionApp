@@ -1,9 +1,10 @@
 from flask import Flask, render_template, request
-import numpy as np
 from PIL import Image
 from io import BytesIO
 import base64
-from object_detection import detect_object
+from prediction import return_prediction
+from Object import Object
+import numpy as np
 
 app = Flask(__name__)
 
@@ -17,10 +18,10 @@ def upload_image():
         # Get the uploaded file and convert it to a numpy array
         file = request.files['file']
         image = Image.open(file)
-        image_data = np.array(image)
         
         # Call the object detection model
-        object = detect_object(image_data)
+        pred_id, probability = return_prediction(img = image)
+        object = Object(pred_id, probability)
 
         # Convert the image data to base64 and pass it to the template
         buffered = BytesIO()
