@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Object Detection Results</title>
+    <title>Waste Classification Results</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <style>
       body {
@@ -70,13 +70,14 @@
   </head>
   <body>
     <div class="container">
-      <h1>Object Detection Results</h1>
+      <h1>Waste Classification Results</h1>
       <div class="result-container">
         <img src="data:image/png;base64,{{ image_data_uri }}" id="uploaded-image" style="max-width: 50%; max-height: 50%;">
         <div class="educational-text">{{ educational_text }}</div>
       </div>
-      <div class="result">{{ object.label }}</div>
+      <div class="result">Label: {{ object.label }}</div>
       <div class="probability">Probability: {{ object.probability }}</div>
+      <div class="result">Suggested bin: {{ object.bin }}</div>
       <form action="/" method="get">
         <button type="submit">Upload New Image</button>
       </form>

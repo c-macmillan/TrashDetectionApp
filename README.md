@@ -34,16 +34,19 @@ The app is deployed using Google Cloud Platform App Engine. To deploy the app:
 To use the application, follow these steps:
 
 1. Visit the app's homepage: https://trashclassifierapp.uw.r.appspot.com/
-2. Click on the "Upload" button to upload a photo of waste.
+2. Click on the "Choose file" button to upload a photo of waste.
 3. Click on the "Classify" button.
-4. Wait for the app to analyze the photo and suggest the appropriate bin for disposal.
+4. Wait for the app to analyze the photo, classify the detected item (cardboard, compost, glass, metal, paper, plastic, or trash), and suggest the appropriate bin (compost, recycle, or landfill) for disposal.
 5. Dispose your waste in the suggested bin.
 
 
 ### Example
 Below is an example of an image to upload to the app:
-![alt text](images/glass477.jpg "Glass")
+
+<img src="images/glass477.jpg" alt="Glass">
 
 
 Here is an example of the suggestion for the uploaded image:
-![alt text](images/glass477_result.png "Recycling")
+
+<img src="images/glass477_result.png" alt="Recycling" width="458.4" height="676.2">
+
