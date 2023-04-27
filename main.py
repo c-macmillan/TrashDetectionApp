@@ -4,7 +4,6 @@ from io import BytesIO
 import base64
 from prediction import return_prediction
 from Object import Object
-import numpy as np
 
 app = Flask(__name__)
 

@@ -13,23 +13,10 @@ from io import BytesIO
 import sys
 
 device= torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+pretrained_model = torch.jit.load('model_scripted.pt')
 
-def return_prediction(filename = 'densenet121_0cpu.pth', img='img_0467_720.jpg' ):
+def return_prediction(filename = 'model_scripted.pt', img='img_0467_720.jpg' ):
     print("Starting Predictions\n\n")
-    # client = storage.Client()
-    # bucket = storage_client.bucket(bucket_name)
-    # blob = bucket.blob(blob_name)
-    # blob.download_to_filename(filename)
-    pretrained_model = models.densenet121(weights=True)
-    num_features = pretrained_model.classifier.in_features
-    # Define a new classifier with 6 output units
-    new_classifier = nn.Linear(num_features, 6)
-    pretrained_model.classifier = new_classifier
-    device = torch.device('cpu')
-    with open(filename, 'rb') as f:
-        buffer = BytesIO(f.read())
-    state_dict = torch.load(buffer, map_location=device)
-    pretrained_model.load_state_dict(state_dict)
     transform = transforms.Compose([
     transforms.ToTensor(),
     transforms.Resize((224,224)),
