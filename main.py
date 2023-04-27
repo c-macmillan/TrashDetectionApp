@@ -13,7 +13,7 @@ def index():
     return render_template('upload.html')
 
 @app.route('/', methods=['GET', 'POST'])
-def upload_image():
+def lambda_handler(event, context):
     if request.method == 'POST':
         # Get the uploaded file and convert it to a numpy array
         file = request.files['file']
