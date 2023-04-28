@@ -4,16 +4,15 @@ from io import BytesIO
 import base64
 from prediction import return_prediction
 from Object import Object
-import numpy as np
 
-app = Flask(__name__)
+application = Flask(__name__)
 
-@app.route('/')
+@application.route('/')
 def index():
     return render_template('upload.html')
 
-@app.route('/', methods=['GET', 'POST'])
-def lambda_handler(event, context):
+@application.route('/', methods=['GET', 'POST'])
+def upload_image():
     if request.method == 'POST':
         # Get the uploaded file and convert it to a numpy array
         file = request.files['file']
@@ -37,7 +36,7 @@ def lambda_handler(event, context):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    application.run(debug=True)
 
 
 

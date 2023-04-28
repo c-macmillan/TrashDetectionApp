@@ -1,0 +1,15 @@
+{
+    "LaunchTemplateName": "increase-container-volume-encrypt",
+    "LaunchTemplateData": {
+        "BlockDeviceMappings": [
+            {
+                "DeviceName": "/dev/xvda",
+                "Ebs": {
+                    "Encrypted": true,
+                    "VolumeSize": 100,
+                    "VolumeType": "gp2"
+                }
+            }
+        ]
+    }
+}
