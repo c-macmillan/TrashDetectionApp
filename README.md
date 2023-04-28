@@ -1,19 +1,16 @@
-# RAW Waste Sorting App
-The RAW Waste Sorting App is an application that helps users in California to sort their waste into the appropriate bins. The app uses image recognition technology to analyze photos of waste and suggests the appropriate bin for disposal. This application aims to reduce environmental degradation and increase the efficiency of the waste management system in California.
+# Waste Classifier App
+The Waste Classifier App is an application that helps users in California to sort their waste into the appropriate bins. The app uses image recognition technology to analyze photos of waste and suggests the appropriate bin for disposal. This application aims to reduce environmental degradation and increase the efficiency of the waste management system in California.
 
 ## Technologies Used
 - Python
 - Flask
-- Google Cloud Platform App Engine
+- AWS Elastic Beanstalk
 - Torch vision model for image classification
 
 ## Files
 The repository contains the following files:
 
-- 404.html - Error page
-- app.yaml - Configuration file for Google Cloud Platform App Engine
-- index.html - Homepage of the app
-- main.py - Python code for the Flask web application
+- application.py - Python code for the Flask web application
 - Object.py - Python code for the object class
 - prediction.py - Python code for the prediction algorithm
 - requirements.txt - List of required Python packages
@@ -23,17 +20,29 @@ The repository contains the following files:
 - densenet121_0cpu.pth - File containing the machine learning model used for prediction
 
 ## Deployment
-The app is deployed using Google Cloud Platform App Engine. To deploy the app:
+The web application is deployed using AWS Elastic Beanstalk. To deploy the application, follow the steps below:
+### Prerequisites
+Before deploying the application, ensure that you have the following:
+- AWS account with appropriate permissions to create an Elastic Beanstalk environment and S3 bucket.
+- AWS Command Line Interface (CLI) installed and configured on your local machine.
+- Git installed on your local machine.
 
-- Set up a GCP account and create a new App Engine project.
-- Install the Google Cloud SDK and authenticate with your GCP account.
-- Clone this repository to your local machine.
-- Navigate to the repository directory and run gcloud app deploy to deploy the app.
+### Steps
+1. Clone the repository: 
+  $ git clone https://github.com/c-macmillan/TrashDetectionApp
+2. Change directory to the project root:
+  $ cd TrashDetectionApp
+3. Initialize your EB CLI repository with the eb init command:
+  $ eb init -p python-3.8 flask-tutorial --region us-west-1
+4. Create an environment and deploy your application to it with eb create:
+  $ eb create flask-env -i t3.2xlarge
+5. When the environment creation process completes, open your website
+  $ eb open
 
 ## Usage
 To use the application, follow these steps:
 
-1. Visit the app's homepage: https://trashclassifierapp.uw.r.appspot.com/
+1. Visit the app's homepage: http://flask-env.eba-mh47pa6v.us-west-1.elasticbeanstalk.com/
 2. Click on the "Choose file" button to upload a photo of waste.
 3. Click on the "Classify" button.
 4. Wait for the app to analyze the photo, classify the detected item (cardboard, compost, glass, metal, paper, plastic, or trash), and suggest the appropriate bin (compost, recycle, or landfill) for disposal.
