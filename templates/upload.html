@@ -1,117 +1,109 @@
+{% extends 'base.html' %}
+
+{% block title %}Upload File{% endblock %}
+{% block content %}
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Waste Classifier App</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
-    <style>
-      body {
-        background-color: #f1f1f1;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      }
-      .container {
-        background-color: #fff;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        margin: auto;
-        max-width: 500px;
-        padding: 50px;
-        text-align: center;
-        margin-left: auto;
-        margin-right: auto;
-      }
-      h1 {
-        font-size: 36px;
-        margin-bottom: 30px;
-      }
-      label {
-        display: block;
-        font-size: 18px;
-        margin-bottom: 10px;
-        text-align: left;
-      }
-      input[type=file] {
-        display: none;
-      }
-      .custom-file-upload {
-        background-color: #007bff;
-        border: none;
-        border-radius: 5px;
-        color: #fff;
-        cursor: pointer;
-        display: inline-block;
-        font-size: 18px;
-        margin-bottom: 20px;
-        padding: 10px 20px;
-        transition: all 0.3s ease-in-out;
-      }
-      .custom-file-upload:hover {
-        background-color: #0062cc;
-      }
-      .img-upload {
-        display: block;
-        width: 90%;
-        margin-left: auto;
-        margin-right: auto;
-      }
-      .img-upload img {
-        display: block;
-        max-width: 90%;
-        max-height: 90%;
-        margin-left: auto;
-        margin-right: auto;
-      }
-      .detect-button {
-        display: none;
-      }
-      .detect-button.active {
-        display: block;
-        margin: 20px auto 0;
-      }
-      button[type=submit] {
-        background-color: #28a745;
-        border: none;
-        border-radius: 5px;
-        color: #fff;
-        cursor: pointer;
-        font-size: 18px;
-        padding: 10px 20px;
-        transition: all 0.3s ease-in-out;
-      }
-      button[type=submit]:hover {
-        background-color: #218838;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container" style="text-align: left;">
-      <h1>Waste Classifier App</h1>
-      <p>Welcome to the Waste Classifier App. This app allows you to take a picture of garbage and classify it as cardboard, compost, glass, metal, paper, plastic, or trash. Depending on which category it is, the app will suggest the appropriate bin (compost, recycle, or landfill) for disposal.</p>
-      <p>To get started, follow these steps:</p>
-      <ol>
-        <li>Click on Choose file to upload an image</li>
-        <li>Click on Classify to find out where this item should go</li>
-        <li>Dispose the item in the suggested bin</li>
-      </ol>
-      <form action="/" method="post" enctype="multipart/form-data">
-        <label for="file">Select an image of trash to identify which bin it should go in:</label>
+
+<head>
+  <title>Waste Classifier App</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <style>
+    input[type=file] {
+      display: none;
+    }
+
+    .custom-file-upload {
+      background-color: #007bff;
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      cursor: pointer;
+      display: inline-block;
+      font-size: 18px;
+      margin-bottom: 20px;
+      padding: 10px 20px;
+      transition: all 0.3s ease-in-out;
+      max-width: 50%;
+      max-height: 50%;
+    }
+
+    .custom-file-upload:hover {
+      background-color: #0062cc;
+    }
+
+    .img-upload {
+      display: block;
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .img-upload img {
+      display: block;
+      max-width: 90%;
+      max-height: 90%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    button[type=submit] {
+      background-color: #28a745;
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      cursor: pointer;
+      font-size: 18px;
+      padding: 10px 20px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .detect-button {
+      display: none;
+    }
+
+    .detect-button.active {
+      display: block;
+      margin: 20px auto 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container" style="text-align: left;">
+    <h1>Waste Classifier App</h1>
+    <p>Welcome to the Waste Classifier App. This app allows you to take a picture of garbage and classify it as
+      cardboard, compost, glass, metal, paper, plastic, or trash. Depending on which category it is, the app will
+      suggest the appropriate bin (compost, recycle, or landfill) for disposal.</p>
+    <p>To get started, follow these steps:</p>
+    <ol>
+      <li>Click on Choose file to upload an image</li>
+      <li>Click on Classify to find out where this item should go</li>
+      <li>Dispose the item in the suggested bin</li>
+    </ol>
+    <div class="result-container">
+    <form action="/" method="post" enctype="multipart/form-data">
+      <label for="file">Select an image of trash to identify which bin it should go in:</label>
         <label class="custom-file-upload">
           <input type="file" name="file" accept="image/*" id="file" onchange="showImage(this)">Choose File
         </label>
-        <div class="img-upload" id="img-upload">
-          <img id="img-preview">
+        <div class="uploaded-image" id="uploaded-image">
+          <img id="img-preview" style="max-width: 50%; max-height: 50%;">
           <button type="submit" class="detect-button" id="detect-button">Classify</button>
         </div>
-      </form>
-    </div>
-    <script>
-      function showImage(input) {
-        if (input.files && input.files[0]) {
-          var reader = new FileReader();
-          reader.onload = function (e) {
-            document.getElementById('img-preview').setAttribute('src', e.target.result);
-            document.getElementById('detect-button').classList.add('active');
-          }
-          reader.readAsDataURL(input.files[0]);
+      </div>
+      </div>
+    </form>
+  <script>
+    function showImage(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          document.getElementById('img-preview').setAttribute('src', e.target.result);
+          document.getElementById('detect-button').classList.add('active');
         }
+        reader.readAsDataURL(input.files[0]);
       }
-    </script>
+    }
+  </script>
+  {% endblock %}

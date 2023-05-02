@@ -11,6 +11,10 @@ app = Flask(__name__)
 def index():
     return render_template('upload.html')
 
+@app.route('/about', methods=['GET'])
+def about():
+    return render_template('upload.html')
+
 @app.route('/', methods=['GET', 'POST'])
 def upload_image():
     if request.method == 'POST':

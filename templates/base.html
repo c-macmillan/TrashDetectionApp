@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="icon" href="{{ url_for('static', filename='RAW_image.png') }}" type="image/x-icon">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <style>
+        body {
+            background-color: #a6b9c9c5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: large;
+        }
+
+        .navbar {
+            background-color: #244568;
+            color: #fff;
+        }
+
+        .navbar-brand {
+            color: #fff;
+            display: inline;
+        }
+
+        .navbar-nav li {
+            display: inline-block;
+            list-style-type: none;
+        }
+
+        .navbar-nav li a {
+            color: #fff;
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+        }
+
+        .navbar-nav li a:hover {
+            background-color: #0056b3;
+        }
+
+        .container {
+            background-color: #a6b9c9c5;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: auto;
+            max-width: fit-content;
+            padding: 75px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        h1 {
+            font-size: xx-large;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            font-size: larger;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        img {
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        label {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        .result-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .result {
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+
+        .probability {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .educational-text {
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding-left: 25px; padding-right: 50px; padding-top: 10px; padding-bottom: 5px;">
+        <a class="navbar-brand" style="font-size: xx-large; justify-self: left;">
+            <img src="{{ url_for('static', filename='RAW_image.png') }}" style="margin-left: 5px; margin-right: auto; margin-inline: 5px; display: inline; max-height: 100px; vertical-align:middle;" alt="Company Logo"/>
+            RAW Trash Classifier 
+        </a>
+
+        <div class="collapse navbar-collapse" style="padding-left: 45px">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">About</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+
+</html>
