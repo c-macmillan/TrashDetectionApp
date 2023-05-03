@@ -4,12 +4,15 @@ from io import BytesIO
 import base64
 from prediction import return_prediction
 from Object import Object
-import numpy as np
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
+    return render_template('upload.html')
+
+@app.route('/about', methods=['GET'])
+def about():
     return render_template('upload.html')
 
 @app.route('/', methods=['GET', 'POST'])
