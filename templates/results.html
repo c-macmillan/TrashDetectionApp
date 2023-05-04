@@ -1,86 +1,76 @@
+{% extends 'home.html' %}
+
+{% block title %}Results{% endblock %}
+{% block content %}
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Waste Classification Results</title>
+    <title >Waste Classification Results</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <style>
-      body {
-        background-color: #f1f1f1;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      }
       .container {
-        background-color: #fff;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        margin: 50px auto;
-        max-width: 800px;
-        padding: 30px;
-        text-align: center;
-      }
-      h1 {
-        font-size: 36px;
-        margin-bottom: 30px;
-      }
-      img {
-        max-width: 100%;
-        height: auto;
-        margin-bottom: 30px;
-      }
-      label {
         display: block;
-        font-size: 18px;
-        margin-bottom: 10px;
-        text-align: left;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center
       }
+
+      .result-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 30px;
+      }
+
+      .result,
+      .probability {
+        text-align: center;
+}
+
       button[type=submit] {
-        background-color: #28a745;
         border: none;
         border-radius: 5px;
+        background-color: #eceada;
         color: #fff;
         cursor: pointer;
         display: inline-block;
-        font-size: 18px;
-        margin-top: 20px;
-        padding: 10px 20px;
+        padding: 0px 0px;
         transition: all 0.3s ease-in-out;
       }
-      button[type=submit]:hover {
-        background-color: #218838;
-      }
-      .result-container {
+      .classify-container {
         display: flex;
-        flex-direction: row;
-        justify-content: center;
+        flex-direction: column;
         align-items: center;
+        justify-content: center;
         margin-top: 30px;
       }
-      .result {
-        margin-bottom: 30px;
-        font-size: 24px;
-      }
-      .probability {
-        margin-bottom: 20px;
-        font-size: 18px;
-      }
-      .educational-text {
-        font-size: 16px;
-        margin-left: 20px;
-      }
+
+    .centered {
+      position: absolute;
+    } 
     </style>
   </head>
   <body>
     <div class="container">
-      <h1>Waste Classification Results</h1>
+      <h1 style="color:#735e59;font-family:YAEnTI0o408-0;font-weight:700;">Waste Classification Results</h1>
       <div class="result-container">
         <img src="data:image/png;base64,{{ image_data_uri }}" id="uploaded-image" style="max-width: 50%; max-height: 50%;">
-        <div class="educational-text">{{ educational_text }}</div>
+        <div class="educational-text" style="color:#735e59;font-family:YAEnTI0o408-0;">{{ educational_text }}</div>
       </div>
-      <div class="result">Label: {{ object.label }}</div>
-      <div class="probability">Probability: {{ object.probability }}</div>
-      <div class="result">Suggested bin: {{ object.bin }}</div>
+      <div class="result" style="color:#735e59;font-family:YAEnTI0o408-0;font-weight:700;">Label: {{ object.label }}</div>
+      <div class="probability" style="color:#735e59;font-family:YAEnTI0o408-0;font-weight:700;">Probability: {{ object.probability }}</div>
+      <div class="result" style="color:#735e59;font-family:YAEnTI0o408-0;font-weight:700;">Suggested bin: {{ object.bin }}</div>
       <form action="/" method="get">
-        <button type="submit">Upload New Image</button>
+        <button type="submit">
+          <div class="classify-container">
+            <img src="/static/classify_button.svg" alt="New Upload Button" style="width:200px">
+            <div class="centered" style="font-size:17px">UPLOAD NEW IMAGE</div>
+          </div> 
+        </button>
       </form>
     </div>
   </body>
 </html>
+{% endblock %}

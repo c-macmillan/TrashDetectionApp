@@ -11,6 +11,10 @@ application = Flask(__name__)
 def index():
     return render_template('upload.html')
 
+@application.route('/about', methods=['GET'])
+def about():
+    return render_template('upload.html')
+
 @application.route('/', methods=['GET', 'POST'])
 def upload_image():
     if request.method == 'POST':
@@ -37,6 +41,3 @@ def upload_image():
 
 if __name__ == '__main__':
     application.run(debug=True)
-
-
-
