@@ -110,12 +110,12 @@
           <img src="/static/upload_button.svg" alt="Upload Button">
         </label>
         <input type="file" name="file" accept="image/*" id="file" onchange="showImage(this)" style="display: none;">
-        <div class="uploaded-image" id="uploaded-image">
+        <div class="uploaded-image" id="uploaded-image" style="display: flex; flex-direction: column; align-items: center;">
           <img id="img-preview" style="max-width: 50%; max-height: 50%;">
           <button type="submit" class="detect-button" id="detect-button">
             <div class="classify-container">
-              <img src="/static/classify_button.svg" alt="Classify Button" style="max-width: 50%; max-height: 50%; width: 200px; padding-left: 400px;">
-              <div class="centered" style="padding-left:400px">CLASSIFY</div>
+              <img src="/static/classify_button.svg" alt="Classify Button" style="max-width: 50%; max-height: 50%; width: 320px;">
+              <div class="centered">CLASSIFY</div>
             </div> 
           </button>
         </div>
