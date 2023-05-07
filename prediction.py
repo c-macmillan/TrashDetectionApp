@@ -45,4 +45,10 @@ def return_prediction(filename = 'densenet121_0cpu.pth', img='img_0467_720.jpg' 
         output = pretrained_model(img)
         probabilities = torch.nn.functional.softmax(output, dim=1)
         predicted_class_idx = torch.argmax(probabilities, dim=1)
-    return predicted_class_idx.item(), torch.max(probabilities).data.numpy()
+    predicted_class, probability = predicted_class_idx.item(), torch.max(probabilities).data.numpy()
+    
+    # If the probability is less than 0.7, we will classify it as trash
+    if probability < 0.7:
+        predicted_class, probability = 6, 1-probability
+    
+    return predicted_class, probability
