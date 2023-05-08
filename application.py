@@ -13,6 +13,14 @@ def index():
 
 @application.route('/about', methods=['GET'])
 def about():
+    return render_template('about.html')
+
+@application.route('/resources', methods=['GET'])
+def resources():
+    return render_template('resources.html')
+
+@application.route('/home', methods=['GET'])
+def home():
     return render_template('upload.html')
 
 @application.route('/', methods=['GET', 'POST'])
@@ -36,7 +44,6 @@ def upload_image():
     
     # Render the upload form
     return render_template('upload.html')
-
 
 
 if __name__ == '__main__':
