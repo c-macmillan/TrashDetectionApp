@@ -60,7 +60,7 @@ Below is an example of an image to upload to the app:
 
 Here is an example of the suggestion for the uploaded image:
 
-<img src="images/plastic8.png" alt="Recycling" width="458.4" height="676.2">
+<img src="images/plastic8_result.png" alt="Recycling" width="458.4" height="676.2">
 
 ## References
 - https://arxiv.org/pdf/1608.06993.pdf
